@@ -4,7 +4,7 @@ BASE_URL="http://cht.sh"
 
 Languages=('elixir' 'ruby' 'rust' 'bash' 'lua' 'python' 'crystal' 'go')
 Tools=('tmux' 'docker' '7z' 'docker-compose' 'curl' 'kubectl' 'git')
-Coreutils=('xargs' 'sed' 'awk' 'grep')
+Coreutils=('xargs' 'sed' 'awk' 'grep' 'ifconfig')
 
 get_options () {
   printf "%s\n%s\n%s\n" "${Languages[@]}" "${Tools[@]}" "${Coreutils[@]}"
@@ -33,7 +33,7 @@ retrieve_sheet () {
 main () {
   selected_value=$(get_options | fzf)
   read -rp "Query: " query
-  retrieve_sheet $selected_value $query
+  retrieve_sheet "$selected_value" "$query"
 }
 
 main "$@"
